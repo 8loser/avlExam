@@ -176,6 +176,10 @@ export const OAuthSev = {
   confirm: () => {
     return fetch("OAuth");
   },
+  // 取得使用者資訊
+  userInfo: (paramObj) => {
+    return post("OAuth/handler", paramObj);
+  },
 };
 
 // 將封裝的方法打包起來

@@ -7,6 +7,9 @@ import Vuex from "vuex";
 // 訊息彈跳
 import alert from "./store_modules/alert";
 
+// OAuth 驗證
+import auth from "./store_modules/auth";
+
 Vue.use(Vuex);
 
 // Vuex 預設狀態
@@ -20,6 +23,7 @@ export default new Vuex.Store({
   mutations: {},
   modules: {
     alert: alert,
+    auth: auth,
   },
   getters: {},
   actions: {},

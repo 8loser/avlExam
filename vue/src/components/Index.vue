@@ -41,6 +41,23 @@ export default {
     });
     // 取得資料庫資料
     this.getData();
+    // 網址有Code參數，呼叫API判斷是否已註冊
+    if (this.$route.query.code) {
+      // 呼叫API，使用code取得使用者資料
+      this.$store
+        .dispatch("auth/getUserInfo", this.$route.query.code)
+        .then(data => {
+          this.$store.commit(
+            "alert/success",
+            "帳號驗證成功 " + data.name + " " + data.email
+          );
+        })
+        .catch(err => {
+          // code驗證失敗跳回首頁，清掉參數
+          this.$store.commit("alert/error", "驗證失敗 " + err);
+        });
+      this.$router.replace("/");
+    }
   },
   methods: {
     // 判斷是否scroll到底部

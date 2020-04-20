@@ -5,6 +5,11 @@
       <router-link to="/" tag="span" exact :style="{ cursor: 'pointer'}">首頁</router-link>
     </v-toolbar-title>
     <v-spacer />
+    <!-- 如果帳號驗證成功顯示帳號名稱 -->
+    <span
+      class="hidden-sm-and-down"
+      v-if="this.$store.state.auth.name"
+    >{{this.$store.state.auth.name}}</span>
     <v-btn icon @click="googleAuth">
       <v-icon>mdi-google</v-icon>
     </v-btn>
