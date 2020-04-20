@@ -160,6 +160,17 @@ export const MailSev = {
   },
 };
 
+/**
+ * 取得Problem資料
+ * param id, 從第幾個id之後開始取得
+ */
+// export const ProblemSev = (param) => fetch("problem?after=" + param);
+export const ProblemSev = {
+  fetch: function(paramObj) {
+    return fetch("problem", paramObj);
+  },
+};
+
 // 將封裝的方法打包起來
 // export const UserServer = {
 //   fetch: function(paramObj) {
