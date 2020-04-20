@@ -104,3 +104,6 @@ dist
 .tern-port
 
 package-lock.json
+
+# 不上傳前端打包後的檔案
+public
