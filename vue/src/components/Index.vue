@@ -16,7 +16,13 @@
             <td>{{ item.question_title }}</td>
             <td>{{ item.question_text }}</td>
             <td>
-              <v-chip v-for="(tag,idx) in item.hashtags" :key="idx" label class="ma-2">{{tag}}</v-chip>
+              <v-chip
+                v-for="(tag,idx) in item.hashtags"
+                :key="idx"
+                label
+                class="ma-2"
+                :color="hashtags.indexOf(tag) >= 0?'primary':''"
+              >{{tag}}</v-chip>
             </td>
           </tr>
         </tbody>
@@ -27,6 +33,7 @@
 
 <script>
 import { ProblemSev } from "../config/api";
+import { mapState } from "vuex";
 
 export default {
   data: () => ({
@@ -34,6 +41,12 @@ export default {
     lastId: 0,
     problemList: []
   }),
+  computed: {
+    // 載入vuex的query/hashtags，用於監測
+    ...mapState({
+      hashtags: state => state.query.hashtags
+    })
+  },
   created() {
     // 判斷是否scroll到底部
     window.addEventListener("scroll", () => {
@@ -111,6 +124,15 @@ export default {
       if (atBottom && this.problemList.length > 0) {
         this.getData();
       }
+    },
+    // query的hashtags變更時執行
+    hashtags() {
+      // 初始化
+      this.atBottom = false;
+      this.lastId = 0;
+      this.problemList = [];
+      // 重抓資料
+      this.getData();
     }
   }
 };
