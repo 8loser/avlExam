@@ -1,21 +1,16 @@
 const functions = require("firebase-functions");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // 設定CORS
-const cors = require("cors");
 app.use(cors({ origin: true }));
 
 // 設定路由路徑
-app.use("/demo", require("./routes/demoRoute"));
+app.use("/Mail", require("./routes/mailRoute"));
 
-/**
- * 使用 firebase
- * api 會是 function 的名稱
- * 如 https://project.cloudfunctions.net/api/
- */
-// const functions = require("firebase-functions");
-// const api = functions.https.onRequest(app);
-// module.exports = { api };
+// api 會是 function 的名稱
+// 如 https://project.cloudfunctions.net/api/
+const api = functions.https.onRequest(app);
 
-app.listen(3000);
+module.exports = { api };
