@@ -14,4 +14,10 @@ router.get("/", controller.list);
  */
 router.get("/:question_id", controller.get);
 
+/**
+ * 計算答案結果
+ * @param query.answer{[question_id: 答案]} 所有已作答的題目跟答案
+ */
+router.get("/result", controller.result);
+
 module.exports = router;
