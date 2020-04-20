@@ -171,6 +171,13 @@ export const ProblemSev = {
   },
 };
 
+export const OAuthSev = {
+  // 取得OAuth授權網址
+  confirm: () => {
+    return fetch("OAuth");
+  },
+};
+
 // 將封裝的方法打包起來
 // export const UserServer = {
 //   fetch: function(paramObj) {

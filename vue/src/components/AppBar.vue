@@ -5,7 +5,7 @@
       <router-link to="/" tag="span" exact :style="{ cursor: 'pointer'}">首頁</router-link>
     </v-toolbar-title>
     <v-spacer />
-    <v-btn icon>
+    <v-btn icon @click="googleAuth">
       <v-icon>mdi-google</v-icon>
     </v-btn>
     <v-btn icon @click="showWriteMail">
@@ -18,6 +18,7 @@
 <script>
 // 載入發送Email頁面元件
 import WriteMail from "./WriteMail.vue";
+import { OAuthSev } from "../config/api";
 
 export default {
   data: () => ({}),
@@ -28,6 +29,18 @@ export default {
     // 顯示寄信元件
     showWriteMail() {
       this.$refs.WriteMail.open();
+    },
+    googleAuth() {
+      OAuthSev.confirm()
+        .then(resp => {
+          if (resp.result == "success") {
+            // 跳轉到google授權網址
+            window.open(resp.data.url, "_self");
+          }
+        })
+        .catch(err => {
+          this.$store.commit("alert/error", err);
+        });
     }
   }
 };
