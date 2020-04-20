@@ -37,4 +37,21 @@ const firebaseAccount = {
   client_x509_cert_url: "",
 };
 
-module.exports = { config, nodeMailerSetting, firebaseAccount };
+/**
+ * google client secret 資料
+ * 下載位置 https://console.developers.google.com/apis/credentials
+ */
+const googleSecret = {
+  web: {
+    client_id: "",
+    project_id: "",
+    auth_uri: "",
+    token_uri: "",
+    auth_provider_x509_cert_url: "",
+    client_secret: "",
+    redirect_uris: [""],
+    javascript_origins: ["", "", ""],
+  },
+};
+
+module.exports = { config, nodeMailerSetting, firebaseAccount, googleSecret };

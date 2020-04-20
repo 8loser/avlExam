@@ -11,6 +11,8 @@ app.use(cors({ origin: true }));
 app.use("/Mail", require("./routes/mailRoute"));
 // 查詢 problem
 app.use("/problem", require("./routes/problemRoute"));
+// google OAuth 功能
+app.use("/OAuth", require("./routes/oauthRoute"));
 
 // api 會是 function 的名稱
 // 如 https://project.cloudfunctions.net/api/
