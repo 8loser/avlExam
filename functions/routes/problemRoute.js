@@ -9,15 +9,15 @@ const controller = require("../controllers/problemController");
 router.get("/", controller.list);
 
 /**
- * 使用question_id取得problem資料
- * @param question_id problem.question_id
- */
-router.get("/:question_id", controller.get);
-
-/**
  * 計算答案結果
  * @param query.answer{[question_id: 答案]} 所有已作答的題目跟答案
  */
 router.get("/result", controller.result);
+
+/**
+ * 使用question_id取得problem資料
+ * @param question_id problem.question_id
+ */
+router.get("/:question_id", controller.get);
 
 module.exports = router;
