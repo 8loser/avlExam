@@ -6,7 +6,7 @@
 import axios from "axios";
 import Qs from "qs";
 
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 10000;
 
 /**
  * API路徑
