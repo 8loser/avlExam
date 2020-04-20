@@ -169,6 +169,9 @@ export const ProblemSev = {
   fetch: function(paramObj) {
     return fetch("problem", paramObj);
   },
+  list: function(paramObj) {
+    return fetch("problem/result", paramObj);
+  },
 };
 
 export const OAuthSev = {

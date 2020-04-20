@@ -7,6 +7,7 @@
             <th class="text-left">Question ID</th>
             <th class="text-left">Title</th>
             <th class="text-left">Text</th>
+            <th class="text-left">Answer</th>
             <th class="text-left">Tags</th>
           </tr>
         </thead>
@@ -15,6 +16,9 @@
             <td>{{ item.question_id }}</td>
             <td>{{ item.question_title }}</td>
             <td>{{ item.question_text }}</td>
+            <td>
+              <v-text-field v-model="answers[item.question_id]"></v-text-field>
+            </td>
             <td>
               <v-chip
                 v-for="(tag,idx) in item.hashtags"
@@ -28,15 +32,31 @@
         </tbody>
       </template>
     </v-simple-table>
+    <!-- 浮動送出按鈕 -->
+    <v-btn bottom color="pink" dark fab fixed right title="計算分數" @click="calculate">
+      <v-icon>mdi-beaker-check</v-icon>
+    </v-btn>
+    <AnswerResult ref="AnswerResult" :result="result"></AnswerResult>
   </v-container>
 </template>
 
 <script>
 import { ProblemSev } from "../config/api";
 import { mapState } from "vuex";
+// 計算結果樣板元件
+import AnswerResult from "./AnswerResult.vue";
 
 export default {
+  components: {
+    AnswerResult
+  },
   data: () => ({
+    result: {
+      completed: 0,
+      correct: 0,
+      accuracy: 0.0
+    },
+    answers: {},
     atBottom: false,
     lastId: 0,
     problemList: []
@@ -116,6 +136,25 @@ export default {
         // 先註解掉，不然很容易把額度用光
         // this.getData();
       }
+    },
+    // 計算分數
+    calculate() {
+      // 刪除答案empty的題目
+      var answer = {};
+      for (var item in this.answers) {
+        if (this.answers[item]) {
+          answer[item] = this.answers[item];
+        }
+      }
+      ProblemSev.list(answer)
+        .then(resp => {
+          // 顯示結果
+          this.result = resp.data;
+          this.$refs.AnswerResult.open();
+        })
+        .catch(err => {
+          this.$store.commit("alert/error", err);
+        });
     }
   },
   watch: {
