@@ -20,4 +20,21 @@ const nodeMailerSetting = {
   },
 };
 
-module.exports = { config, nodeMailerSetting };
+/**
+ * firebase 連接設定
+ * 從 Firebase/專案設定/服務帳戶/產生新的私密金鑰 下載
+ */
+const firebaseAccount = {
+  type: "",
+  project_id: "",
+  private_key_id: "",
+  private_key: "",
+  client_email: "",
+  client_id: "",
+  auth_uri: "",
+  token_uri: "",
+  auth_provider_x509_cert_url: "",
+  client_x509_cert_url: "",
+};
+
+module.exports = { config, nodeMailerSetting, firebaseAccount };

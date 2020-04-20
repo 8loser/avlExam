@@ -7,7 +7,10 @@ const cors = require("cors");
 app.use(cors({ origin: true }));
 
 // 設定路由路徑
+// 發信
 app.use("/Mail", require("./routes/mailRoute"));
+// 查詢 problem
+app.use("/problem", require("./routes/problemRoute"));
 
 // api 會是 function 的名稱
 // 如 https://project.cloudfunctions.net/api/
