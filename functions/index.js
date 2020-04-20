@@ -13,6 +13,8 @@ app.use("/Mail", require("./routes/mailRoute"));
 app.use("/problem", require("./routes/problemRoute"));
 // google OAuth 功能
 app.use("/OAuth", require("./routes/oauthRoute"));
+// 查詢使用者功能
+app.use("/user", require("./routes/userRoute"));
 
 // api 會是 function 的名稱
 // 如 https://project.cloudfunctions.net/api/
