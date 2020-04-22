@@ -42,7 +42,7 @@
 - firebase 免費版本有每日限制額度，如果撈資料庫失敗可以查看是否配額已達每日上線
   - 參考 https://console.cloud.google.com/appengine/quotadetails
 - firebase functions 有 cold start 機制
-  - 所以佈署到 firebase 上後，一段時間沒有存取，會進入釋放物件狀態，再收到請求時才會重新建立物件 (cold start)，這中間可能會有好幾秒延遲，所以前端請求 API 的 timeout 時間設定為 10 秒。
+  - 佈署到 firebase 上後，如果有一段時間沒有存取會釋放物件，等收到新的請求時才會重新建立物件 (cold start)，這中間可能會有好幾秒延遲，所以前端請求 API 的 timeout 時間設定為 10 秒。
   - 改善方法
     - minimizing cold start time https://firebase.google.com/docs/functions/tips#performance
     - 使用自己的 server
