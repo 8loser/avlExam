@@ -7,7 +7,10 @@
 - 使用 firebase cloud firestore
 - 新版本 cloud firestore 在 firebase init 的時候會有 `Error: Error fetching Firestore indexes` 錯誤，要到 https://console.cloud.google.com/datastore/ 轉換成原生版本，這是 bug https://github.com/firebase/firebase-tools/issues/1988
 
-* 資料庫內容為 `data.json` 請匯入到 cloud firestore
+* 資料另存成 CSV 檔後，使用線上 CSV2JSON 轉換為 JSON 格式
+* 使用 `dataprepare/regulation.js` 整理資料內容
+* `dataprepare/data.json` 為整理過得資料內容
+* 使用 `dataprepare/upload.js` 上傳到 firebase 資料庫
 
 # 後端程式
 
